@@ -47,6 +47,5 @@ CREATE TABLE users(
 Se você tiver alguma dúvida ou sugestão para melhorar este projeto educacional. sinta-se á vontade para entrar em contato conosco enviando um e-mail para Ana.
 ana.cesantos10@senacsp.edu.br.
 
-```
-
+---
 Este projeto é destinado apenas para fins educacionais e não está disponível para venda. Espero que este projeto ajude no aprendizado em sistema de login. Sinta-se à vontade para personalizar e adaptar este projeto para suas necessidades educacionais.
