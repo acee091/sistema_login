@@ -117,4 +117,33 @@ app.post('/log', function(req, res){
     })
 })
 
+app.post('/update', function(req, res){
+    console.log('entrou')
+    let email = req.body.email
+    let pass = req.body.pwd
+    let username = req.body.nome
+    let idade = req.body.idade
+
+    let con = conectiondb()
+
+    let query = 'UPDATE users SET username = ?, pass = ?, idade = ? WHERE email LIKE ?';
+
+    con.query(query, [username, pass, idade, req.session.user], function(err, results){
+        let query2 = 'SELECT * FROM users WHERE email LIKE ?';
+
+        con.query(query2, [req.session.user], function(err, results){
+            res.render('views/home', {message: results})
+        })
+    })
+})  
+
+app.post('/delete', function(req, res){
+    let username = req.body.nome
+
+    let con = conectiondb()
+    let query = 'DELETE FROM users WHERE email LIKE ?'
+    con.query(query, [req.session.user], function(err, results){
+        res.redirect('/')
+    })
+})
 app.listen(8081, () => console.log(`App listening on port!`))
