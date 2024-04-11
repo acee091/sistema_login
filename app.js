@@ -98,6 +98,23 @@ app.post('/register', (req, res)=>{
     });
 });
 
+app.post('/log', function(req, res){
+    let email = req.body.email
+    let pass = req.body.pass
 
+    let con = conectiondb()
+    let query = 'SELECT * FROM users WHERE pass = ? AND email LIKE ?'
+
+    con.query(query, [pass, email], function(err, results){
+        if(results.length > 0){
+            req.session.user = email // seção de identificação
+            console.log('Login efetuado com sucesso!')
+            res.render('views/home', {message: results})
+        } else{
+             let message = "Login incorreto"
+             res.render('views/login', {message: message})
+        }
+    })
+})
 
 app.listen(8081, () => console.log(`App listening on port!`))
